@@ -1,0 +1,16 @@
+[Unit]
+Description=nexus service
+After=network.target
+
+[Service]
+Type=forking
+LimitNOFILE=65536
+LimitNPROC=65536
+ExecStart=/opt/{{ nexus_archive_version }}/bin/nexus start
+ExecStop=/opt/{{ nexus_archive_version }}/bin/nexus stop
+User=nexus
+Group=nexus
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

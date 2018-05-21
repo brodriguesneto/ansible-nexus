@@ -1,0 +1,84 @@
+---
+- name: Install utils
+  package:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - unzip
+    - gzip
+    - bzip2
+    - maven
+
+- name: Create Nexus user
+  user:
+    name: nexus
+    shell: /bin/false 
+    home: "/opt/{{ nexus_archive_version }}"
+    create_home: no
+    system: yes
+    state: present
+
+- name: Download Nexus
+  unarchive:
+    src: "https://download.sonatype.com/nexus/{{ nexus_major_version }}/{{ nexus_archive_version }}-unix.tar.gz"
+    dest: /opt/
+    owner: nexus
+    group: nexus
+    creates: "/opt/{{ nexus_archive_version }}"
+    remote_src: yes
+
+- name: Fix owner and group of Nexus directory
+  file:
+    name: "{{ item }}"
+    owner: nexus
+    group: nexus
+    state: directory
+    recurse: yes
+  loop:
+    - "/opt/{{ nexus_archive_version }}"
+    - /opt/sonatype-work
+
+- name: Create Nexus systemd script
+  template:
+    src: systemd.j2
+    dest: /lib/systemd/system/nexus.service
+  notify: Reload systemd
+
+- name: Debug nexus_sizing_profile variable with verbosity 2
+  debug:
+    var: nexus_sizing_profile
+    verbosity: 2
+
+- name: Test Nexus Instance sizing Profile
+  fail:
+    msg: "nexus_sizing_profile variable value should be one of: small, medium, large16, large32 or large64"
+  when:
+    - nexus_sizing_profile != "small"
+    - nexus_sizing_profile != "medium"
+    - nexus_sizing_profile != "large16"
+    - nexus_sizing_profile != "large32"
+    - nexus_sizing_profile != "large64"
+
+- name: Configure Nexus JVM options
+  template:
+    src: nexus.vmoptions.j2
+    dest: "/opt/{{ nexus_archive_version }}/bin/nexus.vmoptions"
+    owner: nexus
+    group: nexus
+  notify: Restart Nexus
+
+- name: Configure Nexus properties
+  template:
+    src: nexus.properties.j2
+    dest: "/opt/{{ nexus_archive_version }}/etc/nexus.properties"
+    owner: nexus
+    group: nexus
+  notify: Restart Nexus
+
+- name: Enable and start Nexus service
+  systemd:
+    name: nexus
+    enabled: yes
+    state: started
+  notify: Wait for Nexus to come up

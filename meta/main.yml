@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Boaventura Rodrigues Neto
+  description: An Ansible role that installs and configures Nexus Repository OSS service on Linux
+  company: Ever Proven
+  license: Apache License 2.0
+  min_ansible_version: 2.5
+  cloud_platforms: []
+  platforms:
+  - name: Ubuntu
+    versions:
+      - xenial
+  galaxy_tags:
+    - system
+    - packaging
+dependencies:
+  - everproven.jdk

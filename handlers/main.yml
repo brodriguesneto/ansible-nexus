@@ -1,0 +1,19 @@
+---
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Restart Nexus
+  systemd: 
+    name: nexus
+    state: restarted
+  notify: Wait for Nexus to come up
+
+- name: Wait for Nexus to come up
+  uri:
+    url: "http://localhost:{{ nexus_application_port }}"
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 120
+  delay: 1

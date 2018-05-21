@@ -1,0 +1,15 @@
+-Xms{{ nexus_instance_profiles[nexus_sizing_profile].xms }}
+-Xmx{{ nexus_instance_profiles[nexus_sizing_profile].xmx }}
+-XX:MaxDirectMemorySize={{ nexus_instance_profiles[nexus_sizing_profile].xx_max_direct_memory_size }}
+-XX:+UnlockDiagnosticVMOptions
+-XX:+UnsyncloadClass
+-XX:+LogVMOutput
+-XX:LogFile=../sonatype-work/nexus3/log/jvm.log
+-Djava.net.preferIPv4Stack=true
+-Dkaraf.home=.
+-Dkaraf.base=.
+-Dkaraf.etc=etc/karaf
+-Djava.util.logging.config.file=etc/karaf/java.util.logging.properties
+-Dkaraf.data=../sonatype-work/nexus3
+-Djava.io.tmpdir=../sonatype-work/nexus3/tmp
+-Dkaraf.startLocalConsole=false

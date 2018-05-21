@@ -1,0 +1,32 @@
+---
+nexus_major_version: 3
+
+nexus_archive_version: nexus-3.11.0-01
+
+nexus_application_port: 8081
+
+nexus_application_host: 0.0.0.0
+
+nexus_sizing_profile: small
+
+nexus_instance_profiles:
+  small:
+    xms: 1200M
+    xmx: 1200M
+    xx_max_direct_memory_size: 2G
+  medium:
+    xms: 2703M
+    xmx: 2703M
+    xx_max_direct_memory_size: 2703M
+  large16:
+    xms: 4G
+    xmx: 4G
+    xx_max_direct_memory_size: 6717M
+  large32:
+    xms: 4G
+    xmx: 4G
+    xx_max_direct_memory_size: 17530M
+  large64:
+    xms: 4G
+    xmx: 4G
+    xx_max_direct_memory_size: 39158M
