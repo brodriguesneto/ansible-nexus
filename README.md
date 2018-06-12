@@ -1,9 +1,12 @@
 nexus
 =====
 
+[![Build Status](https://travis-ci.org/everproven/ansible-nexus.svg?branch=master)](https://travis-ci.org/everproven/ansible-nexus)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-everproven.nexus-blue.svg)](https://galaxy.ansible.com/everproven/nexus/)
+
 An Ansible role that installs and configures [Nexus Repository OSS] service on Linux.
 
-It installs Nexus Repository OSS version 3 (tested with vesion 3.11.0-01) and some tooling: __unzip__, __gzip__, __bzip2__ and __maven__.
+It installs Nexus Repository OSS version 3 (tested with vesion 3.12.0-01) and some tooling: __unzip__, __gzip__, __bzip2__ and __maven__.
 
 Platforms
 ---------
@@ -11,6 +14,7 @@ Platforms
 Role tested on Linux operating systems:
 
 * Ubuntu Server 16.04 LTS
+* Ubuntu Server 18.04 LTS
 
 Requirements
 ------------

@@ -17,3 +17,4 @@
   until: result.status == 200
   retries: 120
   delay: 1
+  ignore_errors: "{{ ansible_check_mode }}"
