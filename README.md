@@ -6,7 +6,7 @@ nexus
 
 An Ansible role that installs and configures [Nexus Repository OSS] service on Linux.
 
-It installs Nexus Repository OSS version 3 (tested with vesion 3.12.0-01) and some tooling: __unzip__, __gzip__, __bzip2__ and __maven__.
+It installs Nexus Repository OSS and some tooling: __unzip__, __gzip__, __bzip2__ and __maven__.
 
 Platforms
 ---------
@@ -19,7 +19,7 @@ Role tested on Linux operating systems:
 Requirements
 ------------
 
-It recommends a server with 4 CPUS and assumes that the server will have at lest 4GB of RAM. For more informantion see the __nexus_sizing_profile__ for server setup.
+It recommends a server with 4 CPUs and assumes that the server will have at lest 4GB of RAM. For more informantion see the __nexus_sizing_profile__ variable.
 
 Role Variables
 --------------
@@ -34,10 +34,10 @@ nexus_major_version: 3
 
 __nexus_archive_version__: The Nexus Repository OSS archive version.
 
-__Default__: nexus-3.11.0-01
+__Default__: nexus-3.12.0-01
 
 ```YAML
-nexus_archive_version: nexus-3.11.0-01
+nexus_archive_version: nexus-3.12.0-01
 ```
 
 __nexus_application_port__: host port.
