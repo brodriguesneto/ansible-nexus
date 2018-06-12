@@ -34,10 +34,10 @@ nexus_major_version: 3
 
 __nexus_archive_version__: The Nexus Repository OSS archive version.
 
-__Default__: nexus-3.12.0-01
+__Default__: nexus-3.12.1-01
 
 ```YAML
-nexus_archive_version: nexus-3.12.0-01
+nexus_archive_version: nexus-3.12.1-01
 ```
 
 __nexus_application_port__: host port.
